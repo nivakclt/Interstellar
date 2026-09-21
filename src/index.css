@@ -1566,33 +1566,12 @@ blockquote {
 }
 
 .endurance-glass {
-  position: relative;
-margin-top:30px;
-margin-left:30px;
-margin-right: 30px;
-  width: 96%;
-
+  width: 100%;
+  max-width: 1400px;
+  margin: 30px auto;
   padding: 34px;
+  box-sizing: border-box;
 
-  border:
-    1px solid rgba(255,255,255,.13);
-
-  border-radius: 24px;
-
- 
-  backdrop-filter:
-    blur(24px)
-    saturate(115%);
-
-  -webkit-backdrop-filter:
-    blur(24px)
-    saturate(115%);
-
-  box-shadow:
-    0 35px 100px rgba(0,0,0,.42),
-    inset 0 1px 0 rgba(255,255,255,.055);
-
-  overflow: hidden;
 }
 
 .endurance-glass::before {
@@ -4680,196 +4659,31 @@ margin-right: 30px;
    RESPONSIVE — MISSION PAGES
 ========================================================= */
 
-@media (max-width: 900px) {
-  .mission-page,
-  .mission-log-page {
-    width: min(100% - 32px, 700px);
-  }
-
-  .mission-page {
-    padding-top: 110px;
-  }
-
-  .mission-hero {
-    grid-template-columns: 1fr;
-    gap: 45px;
-  }
-
-  .mission-hero-side {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-  }
-
-  .mission-telemetry {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .mission-telemetry > div:nth-child(2) {
-    border-right: 0;
-  }
-
-  .mission-telemetry > div:nth-child(-n + 2) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-
-  .mission-statement {
-    grid-template-columns: 4px minmax(0, 1fr);
-  }
-
-  .statement-meta {
-    grid-column: 2;
-  }
-
-  .world-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .world-card {
-    min-height: 450px;
-  }
-
-  .mission-gargantua {
-    grid-template-columns: 1fr;
-  }
-
-  .gargantua-mini {
-    width: min(100%, 380px);
-  }
-
-  .mission-bottom {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .scroll-indicator {
-    grid-column: 1 / -1;
-    justify-content: center;
-    padding-top: 12px;
-  }
-}
-
 @media (max-width: 600px) {
-  .mission-page,
-  .mission-log-page {
-    width: calc(100% - 24px);
-  }
-
   .mission-page {
-    padding-top: 90px;
-    padding-bottom: 45px;
+    width: 100%;
+    padding: 90px 12px 45px;
+    box-sizing: border-box;
   }
 
   .mission-glass {
+    width: 100%;
+    margin: 0;
+    
     padding: 22px 18px;
+    box-sizing: border-box;
     border-radius: 20px;
   }
 
-  .mission-hero {
-    padding-bottom: 48px;
-  }
-
   .mission-hero h1 {
-    font-size: clamp(2.7rem, 14vw, 4.5rem);
-    letter-spacing: -0.07em;
+    font-size: clamp(2.2rem, 11vw, 4rem);
+    white-space: nowrap;
   }
+}
 
-  .mission-tagline {
-    font-size: 9px;
-    letter-spacing: 0.12em;
-  }
-
-  .mission-description {
-    font-size: 10px;
-    letter-spacing: 0.08em;
-  }
-
-  .mission-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .mission-primary-btn,
-  .mission-secondary-btn {
-    width: 100%;
-  }
-
-  .mission-hero-side {
-    grid-template-columns: 1fr;
-    gap: 22px;
-  }
-
-  .mission-telemetry {
-    grid-template-columns: 1fr;
-  }
-
-  .mission-telemetry > div,
-  .mission-telemetry > div:nth-child(2) {
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-  }
-
-  .mission-telemetry > div:last-child {
-    border-bottom: 0;
-  }
-
-  .mission-statement {
-    grid-template-columns: 3px minmax(0, 1fr);
-    gap: 16px;
-    padding: 75px 0;
-  }
-
-  .statement-copy h2 {
-    font-size: clamp(2.3rem, 12vw, 4rem);
-  }
-
-  .statement-meta {
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .mission-worlds,
-  .mission-gargantua {
-    padding: 75px 0;
-  }
-
-  .mission-section-head {
-    display: block;
-  }
-
-  .mission-index {
-    display: block;
-    margin-top: 16px;
-  }
-
-  .world-grid {
-    margin-top: 32px;
-  }
-
-  .world-card {
-    min-height: 420px;
-  }
-
-  .mission-bottom {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  .scroll-indicator {
-    grid-column: auto;
-    justify-content: flex-start;
-  }
-
-  .mission-log-page {
-    padding-top: 110px;
-  }
-
-  .log-item {
-    min-height: 70px;
-    grid-template-columns: 48px minmax(0, 1fr);
-    gap: 12px;
-  }
-
-  .log-item strong {
-    font-size: 0.9rem;
-  }
+.mission-hero h1 {
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(2.8rem, 7vw, 7rem);
+  line-height: 0.85;
+  white-space: nowrap;
 }
