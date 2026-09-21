@@ -1,57 +1,106 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: {
+    opacity: 0,
+  },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const headerVariants = {
+  hidden: {
+    opacity: 0,
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: {
+    opacity: 0,
+    x: -20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut",
+    },
+  },
+};
+
+const LOG_DATA = [
+  {
+    id: "01",
+    title: "LAUNCH",
+  },
+  {
+    id: "02",
+    title: "SATURN ORBIT",
+  },
+  {
+    id: "03",
+    title: "WORMHOLE APPROACH",
+  },
+  {
+    id: "04",
+    title: "GARGANTUA",
+  },
+];
 
 function MissionLog() {
-  const logs = [
-    ["01", "LAUNCH"],
-    ["02", "SATURN ORBIT"],
-    ["03", "WORMHOLE APPROACH"],
-    ["04", "GARGANTUA"],
-  ];
-
   return (
-    <section className="page">
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 20,
+    <main className="mission-log-page page">
+      <motion.header
+        className="mission-log-header"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{
+          once: true,
+          margin: "-50px",
         }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
+        variants={headerVariants}
       >
-        <span className="eyebrow">
-          04 / CHRONOLOGY
-        </span>
+        <span className="eyebrow">04 / CHRONOLOGY</span>
+        <h1 className="page-title">MISSION LOG</h1>
+      </motion.header>
 
-        <h1 className="page-title">
-          MISSION LOG
-        </h1>
-      </motion.div>
-
-      <div className="log-list">
-        {logs.map(([number, title], index) => (
-          <motion.div
+      <motion.ul
+        className="log-list"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{
+          once: true,
+          margin: "-50px",
+        }}
+        variants={containerVariants}
+      >
+        {LOG_DATA.map(({ id, title }) => (
+          <motion.li
+            key={id}
             className="log-item"
-            key={number}
-            initial={{
-              opacity: 0,
-              x: -20,
-            }}
-            animate={{
-              opacity: 1,
-              x: 0,
-            }}
-            transition={{
-              delay: index * 0.1,
-            }}
+            variants={itemVariants}
           >
-            <span>{number}</span>
+            <span>{id}</span>
             <strong>{title}</strong>
-          </motion.div>
+          </motion.li>
         ))}
-      </div>
-    </section>
+      </motion.ul>
+    </main>
   );
 }
 

@@ -13,13 +13,14 @@ function AccretionDisk() {
       state.clock.elapsedTime * 0.18;
   });
 
-  const uniforms = {
-    uTime: { value: 0 },
-  };
+const uniforms = useRef({
+  uTime: { value: 0 },
+});
 
-  useFrame((state) => {
-    uniforms.uTime.value = state.clock.elapsedTime;
-  });
+useFrame((state) => {
+  uniforms.current.uTime.value =
+    state.clock.elapsedTime;
+});
 
   return (
     <mesh
@@ -29,11 +30,11 @@ function AccretionDisk() {
     >
       <planeGeometry args={[9, 9, 1, 1]} />
 
-      <shaderMaterial
-        transparent
-        depthWrite={false}
-        blending={THREE.AdditiveBlending}
-        uniforms={uniforms}
+ <shaderMaterial
+  transparent
+  depthWrite={false}
+  blending={THREE.AdditiveBlending}
+  uniforms={uniforms}
         vertexShader={`
           varying vec2 vUv;
 

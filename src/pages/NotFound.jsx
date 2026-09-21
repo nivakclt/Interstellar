@@ -1,5 +1,4 @@
-import { motion } from "motion/react";
-
+import { motion } from "framer-motion";
 function NotFound() {
   return (
     <section className="page not-found">

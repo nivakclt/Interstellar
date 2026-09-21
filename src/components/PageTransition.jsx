@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "motion/react";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 
 function PageTransition({ children }) {

@@ -6,7 +6,6 @@ function Footer() {
           <span className="footer-label">
             MISSION
           </span>
-
           <strong>ENDURANCE / ED-0426</strong>
         </div>
 
@@ -14,7 +13,6 @@ function Footer() {
           <span className="footer-label">
             DEEP SPACE NETWORK
           </span>
-
           <strong>SIGNAL NOMINAL</strong>
         </div>
 
@@ -22,8 +20,14 @@ function Footer() {
           <span className="footer-label">
             UPLINK LATENCY
           </span>
-
           <strong>01.42 SEC</strong>
+        </div>
+
+        <div className="footer-item">
+          <span className="footer-label">
+            DESTINATION
+          </span>
+          <strong>GARGANTUA SYSTEM</strong>
         </div>
       </div>
 
@@ -34,7 +38,7 @@ function Footer() {
           CLASSIFIED // DEEP SPACE PROGRAM
         </span>
 
-        <span>2026</span>
+        <span>© 2026 COOPER STATION</span>
       </div>
     </footer>
   );

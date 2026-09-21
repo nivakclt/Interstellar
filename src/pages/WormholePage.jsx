@@ -1,16 +1,14 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import {
   ArrowLeft,
   ArrowUpRight,
   Crosshair,
-  Gauge,
   Radio,
   Activity,
   Orbit,
   Zap,
 } from "lucide-react";
-import { useNavigate } from "react-router";
-
+import { useNavigate } from "react-router-dom";
 function WormholePage() {
   const navigate = useNavigate();
 

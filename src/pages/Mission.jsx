@@ -1,56 +1,65 @@
-import { motion } from "motion/react";
+import { motion } from "framer-motion";
 import {
   ArrowDown,
   ArrowUpRight,
-  Clock3,
-  Globe2,
-  Radio,
+  Gauge,
   Orbit,
+  Radio,
   ScanLine,
   Shield,
-  Gauge,
 } from "lucide-react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
+
+const WORLDS = [
+  {
+    id: "01",
+    name: "MILLER",
+    distance: "1.30 LY",
+    status: "HIGH GRAVITY",
+    type: "OCEAN WORLD",
+    score: 72,
+  },
+  {
+    id: "02",
+    name: "MANN",
+    distance: "1.52 LY",
+    status: "ICE ENVIRONMENT",
+    type: "FROZEN PLANET",
+    score: 64,
+  },
+  {
+    id: "03",
+    name: "EDMUNDS",
+    distance: "1.63 LY",
+    status: "VIABLE",
+    type: "TERRESTRIAL",
+    score: 91,
+  },
+];
+
+const TELEMETRY = [
+  ["MISSION TIME", "142 : 08 : 31"],
+  ["CURRENT VELOCITY", "28,491 KM/S"],
+  ["DISTANCE TRAVELLED", "7.84 LY"],
+  ["SIGNAL", "98.7%"],
+];
+
+const fadeUp = {
+  hidden: {
+    opacity: 0,
+    y: 24,
+  },
+  visible: {
+    opacity: 1,
+    y: 0,
+  },
+};
 
 function Mission() {
   const navigate = useNavigate();
 
-  const worlds = [
-    {
-      id: "01",
-      name: "MILLER",
-      distance: "1.30 LY",
-      status: "HIGH GRAVITY",
-      type: "OCEAN WORLD",
-      score: "72",
-    },
-    {
-      id: "02",
-      name: "MANN",
-      distance: "1.52 LY",
-      status: "ICE ENVIRONMENT",
-      type: "FROZEN PLANET",
-      score: "64",
-    },
-    {
-      id: "03",
-      name: "EDMUNDS",
-      distance: "1.63 LY",
-      status: "VIABLE",
-      type: "TERRESTRIAL",
-      score: "91",
-    },
-  ];
-
-  const telemetry = [
-    ["MISSION TIME", "142 : 08 : 31"],
-    ["CURRENT VELOCITY", "28,491 KM/S"],
-    ["DISTANCE TRAVELLED", "7.84 LY"],
-    ["SIGNAL", "98.7%"],
-  ];
-
   return (
-    <section className="mission-page page">
+    <main className="mission-page page">
       <motion.div
         className="mission-glass"
         initial={{ opacity: 0, y: 35, scale: 0.985 }}
@@ -63,8 +72,7 @@ function Mission() {
         <div className="mission-noise" />
 
         {/* HERO */}
-
-        <div className="mission-hero">
+        <section className="mission-hero">
           <div className="mission-hero-copy">
             <span className="section-label">
               00 — ENDURANCE MISSION / DEEP SPACE PROGRAM
@@ -73,7 +81,10 @@ function Mission() {
             <motion.h1
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 1 }}
+              transition={{
+                delay: 0.2,
+                duration: 1,
+              }}
             >
               INTERSTELLAR
             </motion.h1>
@@ -85,24 +96,27 @@ function Mission() {
             </p>
 
             <p className="mission-description">
-              HUMANITY'S LAST HORIZON.
+              HUMANITY&apos;S LAST HORIZON.
               <br />
               A DEEP SPACE EXPEDITION THROUGH
+              <br />
               UNKNOWN GRAVITATIONAL SYSTEMS.
             </p>
 
             <div className="mission-actions">
               <button
-                onClick={() => navigate("/endurance")}
+                type="button"
                 className="mission-primary-btn"
+                onClick={() => navigate("/endurance")}
               >
                 ENTER MISSION CONTROL
                 <ArrowUpRight size={16} />
               </button>
 
               <button
-                onClick={() => navigate("/wormhole")}
+                type="button"
                 className="mission-secondary-btn"
+                onClick={() => navigate("/wormhole")}
               >
                 GARGANTUA
                 <Orbit size={15} />
@@ -130,42 +144,34 @@ function Mission() {
               <strong>00.481° / 07.421°</strong>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* TELEMETRY */}
-
-        <div className="mission-telemetry">
-          {telemetry.map(([label, value], index) => (
+        <section className="mission-telemetry">
+          {TELEMETRY.map(([label, value], index) => (
             <motion.div
               key={label}
-              initial={{
-                opacity: 0,
-                y: 15,
-              }}
-              whileInView={{
-                opacity: 1,
-                y: 0,
-              }}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
               transition={{
-                delay: index * 0.07,
+                delay: index * 0.08,
+                duration: 0.5,
               }}
             >
               <span>{label}</span>
               <strong>{value}</strong>
             </motion.div>
           ))}
-        </div>
+        </section>
 
         {/* MISSION STATEMENT */}
-
-        <div className="mission-statement">
+        <section className="mission-statement">
           <div className="statement-line" />
 
-          <div>
-            <span className="section-label">
-              PRIMARY OBJECTIVE
-            </span>
+          <div className="statement-copy">
+            <span className="section-label">PRIMARY OBJECTIVE</span>
 
             <h2>
               FIND A NEW HOME
@@ -185,40 +191,30 @@ function Mission() {
               <strong>NOMINAL</strong>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* WORLDS */}
-
-        <div className="mission-worlds">
+        <section className="mission-worlds">
           <div className="mission-section-head">
             <div>
-              <span className="section-label">
-                DESTINATION DATABASE
-              </span>
+              <span className="section-label">DESTINATION DATABASE</span>
               <h2>CANDIDATE WORLDS</h2>
             </div>
 
-            <span className="mission-index">
-              03 TARGETS FOUND
-            </span>
+            <span className="mission-index">03 TARGETS FOUND</span>
           </div>
 
           <div className="world-grid">
-            {worlds.map((world, index) => (
+            {WORLDS.map((world, index) => (
               <motion.article
-                className="world-card"
                 key={world.name}
-                initial={{
-                  opacity: 0,
-                  y: 25,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  y: 0,
-                }}
+                className={`world-card world-card-${index + 1}`}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{
                   delay: index * 0.12,
+                  duration: 0.6,
                 }}
               >
                 <div className="world-card-top">
@@ -230,9 +226,7 @@ function Mission() {
                   <span />
                 </div>
 
-                <span className="world-type">
-                  {world.type}
-                </span>
+                <span className="world-type">{world.type}</span>
 
                 <h3>{world.name}</h3>
 
@@ -249,27 +243,22 @@ function Mission() {
                 </div>
 
                 <div className="world-score">
-                  <div>
+                  <div className="world-score-heading">
                     <span>VIABILITY INDEX</span>
                     <strong>{world.score}%</strong>
                   </div>
 
                   <div className="score-bar">
-                    <span
-                      style={{
-                        width: `${world.score}%`,
-                      }}
-                    />
+                    <span style={{ width: `${world.score}%` }} />
                   </div>
                 </div>
               </motion.article>
             ))}
           </div>
-        </div>
+        </section>
 
         {/* GARGANTUA */}
-
-        <div className="mission-gargantua">
+        <section className="mission-gargantua">
           <div className="gargantua-copy">
             <span className="section-label">
               GRAVITATIONAL ANOMALY / 01
@@ -286,6 +275,8 @@ function Mission() {
             </p>
 
             <button
+              type="button"
+              className="mission-secondary-btn"
               onClick={() => navigate("/wormhole")}
             >
               VIEW ANOMALY
@@ -298,44 +289,38 @@ function Mission() {
             <div className="gargantua-ring ring-b" />
             <div className="gargantua-core" />
 
-            <span className="gargantua-tag tag-a">
-              09.481 G
-            </span>
-
-            <span className="gargantua-tag tag-b">
-              ACTIVE
-            </span>
+            <span className="gargantua-tag tag-a">09.481 G</span>
+            <span className="gargantua-tag tag-b">ACTIVE</span>
           </div>
-        </div>
+        </section>
 
         {/* FINAL STATUS */}
-
-        <div className="mission-bottom">
-          <div>
+        <footer className="mission-bottom">
+          <div className="mission-bottom-item">
             <Radio size={15} />
-            DEEP SPACE NETWORK
+            <span>DEEP SPACE NETWORK</span>
             <strong>LINK STABLE</strong>
           </div>
 
-          <div>
+          <div className="mission-bottom-item">
             <Shield size={15} />
-            HULL INTEGRITY
+            <span>HULL INTEGRITY</span>
             <strong>99.8%</strong>
           </div>
 
-          <div>
+          <div className="mission-bottom-item">
             <Gauge size={15} />
-            DRIVE EFFICIENCY
+            <span>DRIVE EFFICIENCY</span>
             <strong>94.2%</strong>
           </div>
 
           <div className="scroll-indicator">
             <ArrowDown size={14} />
-            SCROLL TO EXPLORE
+            <span>SCROLL TO EXPLORE</span>
           </div>
-        </div>
+        </footer>
       </motion.div>
-    </section>
+    </main>
   );
 }
 

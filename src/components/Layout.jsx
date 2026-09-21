@@ -1,10 +1,9 @@
-import { Outlet } from "react-router";
+import { Outlet } from "react-router-dom";
 
 import Header from "./Header";
 import Footer from "./Footer";
 import PageTransition from "./PageTransition";
 import SpaceBackground from "./SpaceBackground";
-
 
 function Layout() {
   return (
