@@ -89,7 +89,7 @@ function Endurance() {
         {/* TOP HEADER */}
         <div className="endurance-top">
           <div>
-            <span className="section-label">
+            <span className="section-label ">
               01 — SPACECRAFT / ENDURANCE
             </span>
             <h1>ENDURANCE</h1>

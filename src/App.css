@@ -1,39 +1,40 @@
 /* ================================= */
+/* ROOT VARIABLES (were missing)     */
+/* ================================= */
+
+:root {
+  --text-primary: #f3f0e9;
+  --text-accent: #d7a45b;
+  --text-muted: #8b8d91;
+  --font-mono: "Space Mono", "Courier New", monospace;
+}
+
+/* ================================= */
 /* 3D SPACE ENVIRONMENT */
 /* ================================= */
 
 .space-background {
   position: fixed;
-
   inset: 0;
-
   width: 100%;
   height: 100vh;
-
   z-index: 0;
-
   pointer-events: none;
-
   overflow: hidden;
-
   background: #020305;
 }
 
 .space-background canvas {
   display: block;
-
   width: 100% !important;
   height: 100% !important;
 }
-
 
 /* DARK EDGE VIGNETTE */
 
 .space-vignette {
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
 
   background:
@@ -45,16 +46,12 @@
     );
 }
 
-
 /* TECHNICAL GRID */
 
 .space-grid {
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
-
   opacity: 0.08;
 
   background-image:
@@ -85,16 +82,12 @@
     );
 }
 
-
 /* CRT / SCAN LINE EFFECT */
 
 .space-scanlines {
   position: absolute;
-
   inset: 0;
-
   pointer-events: none;
-
   opacity: 0.16;
 
   background:
@@ -102,10 +95,9 @@
       to bottom,
       transparent 0,
       transparent 4px,
-      rgba(255,255,255,0.018) 5px
+      rgba(255, 255, 255, 0.018) 5px
     );
 }
-
 
 /* ================================= */
 /* LAYERING */
@@ -113,29 +105,242 @@
 
 .site-shell {
   position: relative;
-
   min-height: 100vh;
-
   overflow-x: hidden;
-
   background: transparent;
 }
 
 .page-content {
   position: relative;
-
   z-index: 10;
-}
-
-.header {
-  z-index: 100;
 }
 
 .footer {
   position: relative;
-
   z-index: 10;
+}
 
+/* ==========================================================================
+   HEADER & NAVIGATION
+   ========================================================================== */
 
+.header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  box-sizing: border-box;
+}
 
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+
+  /* Glassmorphism Effect */
+  background: rgba(8, 10, 15, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(11px);
+  border: 1px solid rgba(215, 164, 91, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.header-inner:hover {
+  border-color: rgba(215, 164, 91, 0.35);
+  box-shadow: 0 8px 32px 0 rgba(215, 164, 91, 0.1);
+}
+
+/* --- BRAND LOGO --- */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+.brand-symbol {
+  width: 32px;
+  height: 32px;
+  background: rgba(215, 164, 91, 0.12);
+  border: 1px solid var(--text-accent);
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-accent);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-main {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.brand-sub {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* --- DESKTOP NAV --- */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-link.active {
+  color: var(--text-accent);
+  background: rgba(215, 164, 91, 0.1);
+}
+
+/* --- STATUS INDICATOR --- */
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  color: var(--text-accent);
+  padding: 0.4rem 0.75rem;
+  background: rgba(215, 164, 91, 0.06);
+  border: 1px solid rgba(215, 164, 91, 0.2);
+  border-radius: 20px;
+}
+
+/* Pulsing LED status dot */
+.header-status i {
+  width: 6px;
+  height: 6px;
+  background-color: var(--text-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--text-accent);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
+}
+
+/* --- MOBILE TOGGLE BUTTON --- */
+.mobile-menu-button {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* --- MOBILE DRAWER --- */
+.mobile-nav {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 1.5rem;
+  right: 1.5rem;
+  background: rgba(8, 10, 15, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(215, 164, 91, 0.2);
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  /* Hidden state */
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mobile-nav.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--text-accent);
+  background: rgba(215, 164, 91, 0.1);
+}
+
+/* ==========================================================================
+   BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-menu-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 520px) {
+  .header-status {
+    display: none; /* Hide status text on small screens to fit brand name */
+  }
 }

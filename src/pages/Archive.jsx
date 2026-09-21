@@ -11,7 +11,12 @@ function Archive() {
   ];
 
   return (
-    <section className="page">
+    <section className="page" style={{
+    paddingTop: "150px",
+    paddingRight: "80px",
+    paddingBottom: "100px",
+    paddingLeft: "80px",
+  }}>
       <motion.div
         initial={{
           opacity: 0,

@@ -345,10 +345,48 @@ a {
 
 .mobile-menu-button {
   display: none;
+  background: transparent;
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+  padding: 0.4rem;
+  border-radius: 6px;
+  transition: background 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .mobile-nav {
   display: none;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  background: rgba(4, 5, 7, 0.95);
+  transition: max-height 0.35s ease;
+}
+
+.mobile-nav.open {
+  max-height: 400px;
+}
+
+.mobile-nav-link {
+  padding: 16px 20px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.05);
+
+  color: #777b80;
+
+  font-size: 10px;
+
+  letter-spacing: 0.13em;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+  color: var(--amber);
 }
 
 /* =========================================================
@@ -584,6 +622,7 @@ a {
 }
 
 .section-label {
+  display: block;
   color: var(--amber);
 
   font-size: 10px;
@@ -682,7 +721,7 @@ a {
 }
 
 /* =========================================================
-   WORLDS
+   WORLDS (home page)
 ========================================================= */
 
 .worlds-section {
@@ -729,269 +768,8 @@ a {
   font-weight: 500;
 }
 
-.world-grid {
-  margin-top: 70px;
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
-  gap: 15px;
-}
-
-.world-card {
-  position: relative;
-
-  min-height: 560px;
-
-  overflow: hidden;
-
-  border:
-    1px solid rgba(255, 255, 255, 0.09);
-
-  background:
-    rgba(255, 255, 255, 0.025);
-
-  transition:
-    transform 0.45s ease,
-    border-color 0.45s ease;
-
-  transform-style: preserve-3d;
-
-  perspective: 1000px;
-}
-
-.world-card:hover {
-  transform:
-    translateY(-10px)
-    rotateX(2deg)
-    rotateY(-1deg);
-
-  border-color:
-    rgba(213, 154, 85, 0.3);
-}
-
-.world-image {
-  position: relative;
-
-  height: 325px;
-
-  overflow: hidden;
-
-  transform: translateZ(15px);
-
-  background:
-    radial-gradient(
-      circle at 50% 52%,
-      rgba(220, 175, 110, 0.38),
-      transparent 19%
-    ),
-    radial-gradient(
-      circle at 50% 53%,
-      rgba(0, 0, 0, 1) 0 13%,
-      transparent 14%
-    ),
-    radial-gradient(
-      circle at 50% 50%,
-      rgba(214, 159, 85, 0.28),
-      transparent 36%
-    ),
-    linear-gradient(
-      145deg,
-      #111315,
-      #030405 70%
-    );
-}
-
-.world-2 .world-image {
-  background:
-    radial-gradient(
-      circle at 56% 57%,
-      rgba(190, 205, 215, 0.32),
-      transparent 18%
-    ),
-    radial-gradient(
-      circle at 53% 57%,
-      #050607 0 11%,
-      transparent 12%
-    ),
-    linear-gradient(
-      150deg,
-      #34404a,
-      #080a0c 70%
-    );
-}
-
-.world-3 .world-image {
-  background:
-    radial-gradient(
-      circle at 47% 53%,
-      rgba(171, 122, 72, 0.38),
-      transparent 22%
-    ),
-    radial-gradient(
-      circle at 50% 55%,
-      #080706 0 12%,
-      transparent 13%
-    ),
-    linear-gradient(
-      150deg,
-      #3b3023,
-      #0a0907 72%
-    );
-}
-
-.world-orb {
-  position: absolute;
-
-  width: 240px;
-  height: 240px;
-
-  border-radius: 50%;
-
-  left: 50%;
-  top: 50%;
-
-  transform:
-    translate(-50%, -45%)
-    translateZ(30px);
-
-  box-shadow:
-    0 0 60px rgba(213, 154, 85, 0.15),
-    inset -35px -20px 80px rgba(0, 0, 0, 0.7);
-
-  opacity: 0.9;
-}
-
-.world-1 .world-orb {
-  background:
-    radial-gradient(
-      circle at 32% 28%,
-      #c7c7c2,
-      #6e746f 32%,
-      #243029 61%,
-      #060807 78%
-    );
-}
-
-.world-2 .world-orb {
-  background:
-    radial-gradient(
-      circle at 35% 28%,
-      #d9e0e2,
-      #7c8990 34%,
-      #3e474c 63%,
-      #090a0b 78%
-    );
-}
-
-.world-3 .world-orb {
-  background:
-    radial-gradient(
-      circle at 34% 28%,
-      #d0ae87,
-      #8b6547 34%,
-      #493628 60%,
-      #080605 78%
-    );
-}
-
-.world-glow {
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      180deg,
-      transparent 45%,
-      rgba(0, 0, 0, 0.9)
-    );
-}
-
-.world-info {
-  padding: 20px 21px 23px;
-
-  position: relative;
-  z-index: 2;
-}
-
-.world-number {
-  color: var(--amber);
-
-  font-family: "Orbitron", sans-serif;
-
-  font-size: 9px;
-}
-
-.world-title-wrap {
-  margin-top: 18px;
-}
-
-.world-title-wrap span {
-  color: #585c60;
-
-  font-size: 8px;
-
-  letter-spacing: 0.14em;
-}
-
-.world-title-wrap h3 {
-  margin-top: 8px;
-
-  color: #ebe8e1;
-
-  font-family: "Orbitron", sans-serif;
-
-  font-size: 14px;
-
-  font-weight: 500;
-
-  letter-spacing: 0.04em;
-}
-
-.world-info p {
-  margin-top: 18px;
-
-  color: #777b7f;
-
-  font-size: 12px;
-
-  line-height: 1.8;
-}
-
-.world-footer {
-  margin-top: 25px;
-
-  padding-top: 14px;
-
-  border-top:
-    1px solid rgba(255, 255, 255, 0.06);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  color: #65696d;
-
-  font-size: 8px;
-
-  letter-spacing: 0.12em;
-}
-
-.world-footer span {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.world-footer svg {
-  color: var(--amber);
-}
-
 /* =========================================================
-   GARGANTUA
+   GARGANTUA (home page, full)
 ========================================================= */
 
 .gargantua-section {
@@ -1141,12 +919,6 @@ a {
   max-width: 460px;
 
   margin-top: 28px;
-
-  color: #85888c;
-
-  font-size: 15px;
-
-  line-height: 1.9;
 }
 
 .outline-action,
@@ -1186,6 +958,22 @@ a {
 
   background:
     rgba(213, 154, 85, 0.08);
+
+  transform: translateY(-2px);
+}
+
+.primary-action {
+  color: #070605;
+
+  background: var(--amber);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+
+.primary-action:hover {
+  background: var(--amber-light);
 
   transform: translateY(-2px);
 }
@@ -1379,22 +1167,6 @@ blockquote {
   line-height: 1.9;
 }
 
-.primary-action {
-  color: #070605;
-
-  background: var(--amber);
-
-  transition:
-    transform 0.3s ease,
-    background 0.3s ease;
-}
-
-.primary-action:hover {
-  background: var(--amber-light);
-
-  transform: translateY(-2px);
-}
-
 /* =========================================================
    FOOTER
 ========================================================= */
@@ -1479,7 +1251,7 @@ blockquote {
 }
 
 /* =========================================================
-   ANIMATIONS
+   ANIMATIONS (shared)
 ========================================================= */
 
 @keyframes livePulse {
@@ -1538,7 +1310,7 @@ blockquote {
 }
 
 /* =========================================================
-   MOBILE
+   MOBILE (shared header/home)
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -1570,39 +1342,6 @@ blockquote {
 
   .mobile-nav {
     display: flex;
-
-    flex-direction: column;
-
-    max-height: 0;
-
-    overflow: hidden;
-
-    background:
-      rgba(4, 5, 7, 0.95);
-
-    transition:
-      max-height 0.35s ease;
-  }
-
-  .mobile-nav.open {
-    max-height: 400px;
-  }
-
-  .mobile-nav-link {
-    padding: 16px 20px;
-
-    border-top:
-      1px solid rgba(255, 255, 255, 0.05);
-
-    color: #777b80;
-
-    font-size: 10px;
-
-    letter-spacing: 0.13em;
-  }
-
-  .mobile-nav-link.active {
-    color: var(--amber);
   }
 
   .intro-grid,
@@ -1641,7 +1380,7 @@ blockquote {
 }
 
 /* =========================================================
-   SMALL MOBILE
+   SMALL MOBILE (shared header/home)
 ========================================================= */
 
 @media (max-width: 600px) {
@@ -1789,7 +1528,7 @@ blockquote {
 }
 
 /* =========================================================
-   REDUCED MOTION
+   REDUCED MOTION (global)
 ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
@@ -1809,6 +1548,12 @@ blockquote {
     transition-duration:
       0.001ms !important;
   }
+
+  .status-pulse,
+  .ring-a,
+  .ring-b {
+    animation: none;
+  }
 }
 
 /* =========================================================
@@ -1820,15 +1565,12 @@ blockquote {
   padding-bottom: 100px;
 }
 
-
-/* =========================================
-   ONE MAIN GLASS LAYER
-========================================= */
-
 .endurance-glass {
   position: relative;
-
-  width: 100%;
+margin-top:30px;
+margin-left:30px;
+margin-right: 30px;
+  width: 96%;
 
   padding: 34px;
 
@@ -1861,6 +1603,7 @@ blockquote {
 
 .endurance-glass::before {
   content: "";
+  
 
   position: absolute;
 
@@ -1878,15 +1621,10 @@ blockquote {
     );
 }
 
-
-/* =========================================
-   HEADER
-========================================= */
-
 .endurance-top {
+  margin-top: 30px;
   position: relative;
   z-index: 2;
-
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -1918,6 +1656,7 @@ blockquote {
 
 .endurance-top p {
   margin-top: 16px;
+ 
 
   color: #8f9295;
 
@@ -1971,11 +1710,6 @@ blockquote {
   font-weight: 500;
 }
 
-
-/* =========================================
-   MAIN SHIP AREA
-========================================= */
-
 .endurance-main-visual {
   position: relative;
 
@@ -2005,11 +1739,6 @@ blockquote {
 
   cursor: crosshair;
 }
-
-
-/* =========================================
-   ORBITS
-========================================= */
 
 .ship-orbit,
 .ship-ring {
@@ -2100,11 +1829,6 @@ blockquote {
   animation:
     enduranceOrbit1 5s linear infinite reverse;
 }
-
-
-/* =========================================
-   SHIP
-========================================= */
 
 .ship-core {
   position: relative;
@@ -2290,11 +2014,6 @@ blockquote {
     0 0 12px rgba(213,154,85,.8);
 }
 
-
-/* =========================================
-   ENGINE
-========================================= */
-
 .ship-engine {
   position: absolute;
 
@@ -2364,11 +2083,6 @@ blockquote {
     enginePulse 2.4s ease-in-out infinite;
 }
 
-
-/* =========================================
-   GRID
-========================================= */
-
 .ship-scan-grid {
   position: absolute;
 
@@ -2409,11 +2123,6 @@ blockquote {
 
   opacity: .2;
 }
-
-
-/* =========================================
-   TARGET
-========================================= */
 
 .ship-target {
   position: absolute;
@@ -2466,11 +2175,6 @@ blockquote {
   box-shadow:
     0 0 15px rgba(213,154,85,.8);
 }
-
-
-/* =========================================
-   DATA
-========================================= */
 
 .ship-data {
   position: absolute;
@@ -2581,11 +2285,6 @@ blockquote {
 
   letter-spacing: .08em;
 }
-
-
-/* =========================================
-   TELEMETRY
-========================================= */
 
 .endurance-telemetry {
   position: relative;
@@ -2701,11 +2400,6 @@ blockquote {
 
   font-weight: 500;
 }
-
-
-/* =========================================
-   SYSTEMS
-========================================= */
 
 .endurance-systems {
   position: relative;
@@ -2836,11 +2530,6 @@ blockquote {
   text-align: right;
 }
 
-
-/* =========================================
-   CONTROL BAR
-========================================= */
-
 .endurance-control {
   position: relative;
 
@@ -2941,11 +2630,6 @@ blockquote {
     translateY(-2px);
 }
 
-
-/* =========================================
-   ANIMATIONS
-========================================= */
-
 @keyframes enduranceOrbit1 {
   from {
     transform:
@@ -3027,11 +2711,6 @@ blockquote {
     opacity: 1;
   }
 }
-
-
-/* =========================================
-   MOBILE
-========================================= */
 
 @media (max-width: 800px) {
   .endurance-page {
@@ -3237,20 +2916,21 @@ blockquote {
     flex-wrap: wrap;
   }
 }
+
 /* =========================================================
    WORMHOLE PAGE
 ========================================================= */
 
 .wormhole-page {
+
+  margin-top: 50px;
+
+  
   min-height: 100vh;
   padding: 120px 6vw 110px;
   position: relative;
   z-index: 10;
 }
-
-/* =========================================================
-   SINGLE GLASS CONTAINER
-========================================================= */
 
 .wormhole-glass {
   width: min(1500px, 100%);
@@ -3262,8 +2942,9 @@ blockquote {
       rgba(255, 255, 255, 0.065),
       rgba(255, 255, 255, 0.025)
     );
+  border-radius: 24px; /* rounded corners */
 
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  border:1px solid rgba(255, 255, 255, 0.11);
 
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
@@ -3295,10 +2976,6 @@ blockquote {
 
   opacity: 0.6;
 }
-
-/* =========================================================
-   TOP
-========================================================= */
 
 .wormhole-top {
   display: flex;
@@ -3391,10 +3068,6 @@ blockquote {
   letter-spacing: 0.14em;
 }
 
-/* =========================================================
-   MAIN VISUAL
-========================================================= */
-
 .wormhole-main {
   min-height: 620px;
 
@@ -3417,10 +3090,6 @@ blockquote {
 
   perspective: 1200px;
 }
-
-/* =========================================================
-   ORBITS
-========================================================= */
 
 .wormhole-orbit,
 .wormhole-ring {
@@ -3524,10 +3193,6 @@ blockquote {
   animation: ring-spin 16s linear infinite;
 }
 
-/* =========================================================
-   BLACK HOLE
-========================================================= */
-
 .wormhole-core {
   position: relative;
 
@@ -3580,10 +3245,6 @@ blockquote {
     inset 0 0 40px rgba(255, 255, 255, 0.03);
 }
 
-/* =========================================================
-   TARGET
-========================================================= */
-
 .wormhole-target {
   position: absolute;
 
@@ -3629,10 +3290,6 @@ blockquote {
 .wormhole-target svg {
   color: rgba(213, 154, 85, 0.7);
 }
-
-/* =========================================================
-   CENTER TEXT
-========================================================= */
 
 .wormhole-center-label {
   position: absolute;
@@ -3700,10 +3357,6 @@ blockquote {
   z-index: 10;
 }
 
-/* =========================================================
-   DATA LABELS
-========================================================= */
-
 .wormhole-data {
   position: absolute;
 
@@ -3757,10 +3410,6 @@ blockquote {
 
   text-align: right;
 }
-
-/* =========================================================
-   TELEMETRY
-========================================================= */
 
 .wormhole-telemetry {
   position: relative;
@@ -3889,10 +3538,6 @@ blockquote {
   font-family: "Space Grotesk", sans-serif;
 }
 
-/* =========================================================
-   SYSTEMS
-========================================================= */
-
 .wormhole-systems {
   position: relative;
   z-index: 2;
@@ -4002,10 +3647,6 @@ blockquote {
 
   letter-spacing: 0.08em;
 }
-
-/* =========================================================
-   BOTTOM CONTROL
-========================================================= */
 
 .wormhole-control {
   display: flex;
@@ -4122,10 +3763,6 @@ blockquote {
   color: #f3d0a5;
 }
 
-/* =========================================================
-   ANIMATIONS
-========================================================= */
-
 @keyframes wormhole-spin {
   from {
     transform:
@@ -4175,10 +3812,6 @@ blockquote {
     transform: translateY(-7px);
   }
 }
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
 
 @media (max-width: 900px) {
   .wormhole-page {
@@ -4377,14 +4010,6 @@ blockquote {
 
 .mission-hero-copy {
   min-width: 0;
-}
-
-.section-label {
-  display: block;
-  color: var(--amber);
-  font-size: 10px;
-  line-height: 1.5;
-  letter-spacing: 0.17em;
 }
 
 .mission-hero h1 {
@@ -4858,24 +4483,6 @@ blockquote {
   border-bottom: 1px solid rgba(255, 255, 255, 0.07);
 }
 
-.gargantua-copy h2 {
-  margin-top: 18px;
-  color: #eeeae2;
-  font-family: "Orbitron", sans-serif;
-  font-size: clamp(2.8rem, 7vw, 7rem);
-  font-weight: 400;
-  line-height: 0.9;
-  letter-spacing: -0.06em;
-}
-
-.gargantua-copy p {
-  margin-top: 25px;
-  color: #85898e;
-  font-size: 13px;
-  line-height: 1.9;
-  letter-spacing: 0.1em;
-}
-
 .gargantua-copy .mission-secondary-btn {
   margin-top: 30px;
 }
@@ -5083,7 +4690,7 @@ blockquote {
 }
 
 /* =========================================================
-   RESPONSIVE
+   RESPONSIVE — MISSION PAGES
 ========================================================= */
 
 @media (max-width: 900px) {
@@ -5277,13 +4884,5 @@ blockquote {
 
   .log-item strong {
     font-size: 0.9rem;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .status-pulse,
-  .ring-a,
-  .ring-b {
-    animation: none;
   }
 }

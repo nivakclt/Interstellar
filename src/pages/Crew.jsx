@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 
 function Crew() {
   const crew = [
+    
     {
       name: "JOSEPH COOPER",
       role: "COMMANDER",
@@ -25,7 +26,7 @@ function Crew() {
   ];
 
   return (
-    <section className="page">
+    <section className="page" style={{ marginTop: "150px", marginLeft:"30px"}}>
       <motion.div
         initial={{
           opacity: 0,
@@ -45,7 +46,7 @@ function Crew() {
         </h1>
       </motion.div>
 
-      <div className="crew-grid">
+      <div className="crew-grid" style={{marginTop:"10px", marginBottom:"30px"}}>
         {crew.map((member, index) => (
           <motion.div
             className="crew-card"
