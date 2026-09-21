@@ -1579,13 +1579,7 @@ margin-right: 30px;
 
   border-radius: 24px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(18,19,21,.62),
-      rgba(5,6,8,.38)
-    );
-
+ 
   backdrop-filter:
     blur(24px)
     saturate(115%);
@@ -2935,13 +2929,6 @@ margin-right: 30px;
 .wormhole-glass {
   width: min(1500px, 100%);
   margin: 0 auto;
-
-  background:
-    linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.065),
-      rgba(255, 255, 255, 0.025)
-    );
   border-radius: 24px; /* rounded corners */
 
   border:1px solid rgba(255, 255, 255, 0.11);
